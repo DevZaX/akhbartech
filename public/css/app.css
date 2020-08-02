@@ -1,0 +1,43 @@
+*{
+	direction: rtl;
+}
+._top{
+	height: 2vh;
+	background-color: #343434;
+	width: 100vw;
+}
+.articles{
+	margin-top: 4rem;
+}
+.article, .pagination, .form{
+	margin-top: 2rem;
+}
+.footer{
+	margin-top: 4rem;
+}
+.f{
+	display: flex;
+	justify-content: center;
+}
+.btn-primary{
+	background-color: #343434;
+}
+.btn-primary:hover{
+	background-color: #343434;
+}
+.black-link{
+	color: #343434;
+}
+.black-link:hover{
+	text-decoration: none;
+}
+.white-link{
+	color: white;
+}
+.white-link:hover{
+	text-decoration: white;
+}
+.card{
+	padding: 8px;
+	direction: ltr;
+}
