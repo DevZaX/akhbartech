@@ -9,7 +9,7 @@ class ArticleController extends Controller
 {
     public function __construct()
 	{
-		$this->middleware('auth');
+		$this->middleware('auth')->except(['show','index']);
 	}
 	
 	public function index()
@@ -29,7 +29,8 @@ class ArticleController extends Controller
 			'slug' => request('slug'),
 			'intro' => request('intro'),
 			'body' => request('body'),
-			'pic' => request('pic')->store('pics')
+			'pic' => request('pic')->store('pics'),
+			'draft' => 1
 		]);
 		return back();
 	}
@@ -43,7 +44,8 @@ class ArticleController extends Controller
 			'slug' => request('slug'),
 			'intro' => request('intro'),
 			'body' => request('body'),
-			'pic' => request('pic')->store('pics')
+			'pic' => request('pic')->store('pics'),
+			'draft' => 0
 		]);
 		return back();
 		}
@@ -52,6 +54,7 @@ class ArticleController extends Controller
 			'slug' => request('slug'),
 			'intro' => request('intro'),
 			'body' => request('body'),
+			'draft' => 0
 		]);
 		return back();
 		
@@ -64,6 +67,10 @@ class ArticleController extends Controller
 
 	public function show($slug)
 	{
-		return view('articles.show',['article'=>Article::where('slug',$slug)->first()]);
+		$article = Article::where('slug',$slug)->where('draft',0)->first();
+		if(!$article) abort(404);
+		$meta['description'] = $article->intro;
+		$meta['title'] = $article->title;
+		return view('article',['article'=>$article,'meta'=>$meta]);
 	}
 }

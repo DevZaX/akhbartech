@@ -4,30 +4,33 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="index,follow">
-        {{-- <meta name="description" content="{{$meta['description']}}"> --}}
-        {{-- <meta property="og:type" content="{{$og['type']}}">
-        <meta property="og:title" content="{{$og['title']}}">
-        <meta property="og:description" content="{{$og['description']}}">
-        <meta property="og:url" content="{{$og['url']}}">
-		<meta property="og:image" content="{{$og['image']}}">
-		@if( isset($og["imagewh"]) )
-			<meta property="og:image:width" content="600" />
-			<meta property="og:image:height" content="315" />
-		@endif --}}
-        <title>اخر الاخبار التقنية و التكنولوجية</title>
+        <meta name="description" content="{{$meta['description']}}">
+        <title>{{$meta['title']}}</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="/css/app.css">
-        <link rel="icon" href="{{ asset( 'img/logo.png' ) }}" />
-        <link rel="canonical" href="{{request()->url()}}">
     </head>
     <body>
-        <div class="_top"></div>
-       <h1 class="text-center mt-2"><a class="black-link" href="/">اخر الاخبار التقنية و التكنولوجية</a></h1>
+       @error('email')
+	       @php
+	    		$messages['The email field is required.'] = "المرجو ادخال بريدك الالكتروني";
+	    		$messages['The email must be a valid email address.'] = "البريد الالكتروني غير صحيح";
+	    	@endphp
+			<div class="alert alert-danger">
+       			<span>{{$messages[$message]}}</span>
+       		</div>
+       @enderror
+       @if(session()->has('success'))
+       		<div class="alert alert-success">
+       			<span>تم حفظ البريد الالكتروني بنجاح</span>
+       		</div>
+       @endif
+       <div class="_top"></div>
+       <p class="text-center mt-2 logo"><a class="black-link" href="/">اخر الاخبار التقنية و التكنولوجية</a></p>
        @yield('content')
         
 		<div class="row justify-content-center form">
 			<div class="col-md-6">
-				<p class="text-center">ادخل بريدك الالكتروني ليصلك جديدنا</p>
+				<p class="text-center">اخبار متجددة اسبوعيا</p>
 				<form action="/subs" class="f" method="post">
 				@csrf
 					<div>

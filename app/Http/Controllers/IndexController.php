@@ -9,6 +9,8 @@ class IndexController extends Controller
 {
     public function index()
     {
-    	return view('index',['articles'=>Article::paginate(4)]);
+    	$meta['description'] = "اخر الاخبار التقنية و التكنولوجية لمعرفة المستجدات في العالم الرقمي";
+		$meta['title'] = "اخر الاخبار التقنية و التكنولوجية";
+    	return view('index',['articles'=>Article::where('draft',0)->paginate(4),'meta'=>$meta]);
     }
 }

@@ -41,3 +41,14 @@
 	padding: 8px;
 	direction: ltr;
 }
+.card-img-top{
+	max-height: 400px;
+}
+.logo{
+	font-size: 2rem;
+	font-weight: bold;
+}
+.article-title{
+	font-size: 1.2rem;
+	font-weight: bold;
+}
